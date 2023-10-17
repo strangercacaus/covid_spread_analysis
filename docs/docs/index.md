@@ -17,5 +17,8 @@ Esta é a página de documentação do projeto de Análise de Propagação da Co
         mkdocs.yml # Arquivo de configuração do ambiente mkdocs
         docs/
             index.md  # Arquivo de markdown da Homepage de documentação
+    previews/ # Pasta com Prints dos gráficos gerados na análise
+    data/ # Pasta com cópia do arquivo de origem extraído em 17/10/2023
+        
     .gitignore # Arquivo de controle com os módulos e diretórios que não serão versionados
     requirements.txt # Arquivo contendo os pacotes externos utilizados no projeto.
