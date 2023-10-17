@@ -1,5 +1,8 @@
 # Análise de Dispersão do Covid 19 por País
 
+Acesse aos gráficos interativos em:
+https://deepnote.com/@cacau/Caue-Marchionatti-Ausecs-Untitled-project-a50281eb-904e-409c-bbad-d1ebc55ceca5
+
 ## Sobre:
 
 A pandemia de Covid 19 impactou o mundo e alterou nosso modo de vida. O fator determinante para a destruição
