@@ -1,17 +1,21 @@
-# Welcome to MkDocs
+# Boas vindas
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Esta é a página de documentação do projeto de Análise de Propagação da Covid 19 conduzido por Cauê Marchionatti Ausec.
 
-## Commands
+!  previews/newplot.png
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Comandos básicos:
 
-## Project layout
+* `pip install -r requirements.txt` - Instala os pacotes necessários para a execução do projeto.
+* `mkdocs serve` - Inicia a exibição da página de documentação.
 
-    mkdocs.yml    # The configuration file.
+## Layout do projeto:
+
+    app/ # Diretório de código do projeto
+        notebook.ipynb # Notebook com as análises
     docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+        mkdocs.yml # Arquivo de configuração do ambiente mkdocs
+        docs/
+            index.md  # Arquivo de markdown da Homepage de documentação
+    .gitignore # Arquivo de controle com os módulos e diretórios que não serão versionados
+    requirements.txt # Arquivo contendo os pacotes externos utilizados no projeto.

@@ -1,1 +1,7 @@
-site_name: My Docs
+site_name: Análise da Propagação da Covid 19
+site_url: https://example.com/
+nav:
+  - Home: index.md
+  - About: about.md
+theme:
+  name: material
