@@ -92,4 +92,4 @@ fig = px.bar(
         'Country':'País',
         'MIR':'Maior Taxa de Infecção'
     })
-col4.plotly_chart(fig_city, use_container_width=True)
+col4.plotly_chart(fig, use_container_width=True)
