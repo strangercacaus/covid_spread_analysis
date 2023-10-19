@@ -22,7 +22,7 @@ col3, col4 = st.columns(2)
 
 #Gráfico 1 - Faturamento por dia.
 df = df[df.Confirmed > 0].copy()
-df[df.Country == 'Brazil']
+df = df[df.Country == 'Brazil']
 fig = px.choropleth(
     df,
     locations = 'Country',
