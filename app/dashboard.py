@@ -8,24 +8,26 @@ st.set_page_config(layout="wide",
                    page_title="Propagação da Covid 19")
 
 # Ler Fonte de Dados
-df = pd.read_csv("https://raw.githubusercontent.com/datasets/covid-19/master/data/countries-aggregated.csv", decimal=",")
+df = pd.read_csv("data/covid_dataset.csv", decimal=",")
+df = df[df.Confirmed > 0]
 
 # Definir tema do painel:
-theme = 'plotly_dark'
+theme = None
+cc_scale = 'Plotly3'
+cd_scale = px.colors.qualitative.Alphabet
 
 #Tratar coluna Data para usar nos filtros dos gráficos
-df["Date"] = pd.to_datetime(df["Date"])
-df = df.sort_values("Date")
-df["Month"] = df["Date"].apply(lambda x: f'{x.year}-{x.month}')
-month = st.sidebar.selectbox("Mês", df["Month"].unique())
-df_filtered = df[df["Month"] == month]
+#df["Date"] = pd.to_datetime(df["Date"])
+#df = df.sort_values("Date")
+#df["Month"] = df["Date"].apply(lambda x: f'{x.year}-{x.month}')
+#month = st.sidebar.selectbox("Mês", df["Month"].unique())
+#df_filtered = df[df["Month"] == month]
 
 #Seta as posições das colunas
 col1, col2 = st.columns(2)
 col3, col4 = st.columns(2)
 
 #Gráfico 1 - Faturamento por dia.
-df = df[df.Confirmed > 0].copy()
 fig = px.choropleth(
     df,
     locations = 'Country',
@@ -34,6 +36,7 @@ fig = px.choropleth(
     animation_frame = 'Date',
     title='Dispersão do vírus da COVID-19',
     template = theme,
+    color_continuous_scale= cc_scale,
     labels={
         "Date":"Data",
         "Confirmed":"Número de Casos"
@@ -50,6 +53,7 @@ fig = px.choropleth(
     animation_frame = 'Date',
     title='Dispersão das mortes da COVID-19',
     template = theme,
+    color_continuous_scale= cc_scale,
     labels={
         "Date":"Data",
         "Deaths":"Número de Mortes"
@@ -69,6 +73,7 @@ fig = px.line(
     y = ['Casos Confirmados','Taxa de Infecção'],
     title='Coeficiente de Infecção e Número de Casos no Brasil (Normalizado)',
     template = theme,
+    color_discrete_sequence= cd_scale,
     labels={'Confirmed Cases Normalized':'Casos Confirmados',
             'Infection Rate Normalized':'Taxa de Infecção',
             'Date':'Data',
@@ -95,6 +100,7 @@ fig = px.bar(
 #    log_y=True,
     title = '10 Maiores taxas de Infecção Global (Máxima de casos notificados em um dia)',
     template = theme,
+    color_discrete_sequence = cd_scale,
     labels={
         'Country':'País',
         'MIR':'Maior Taxa de Infecção'
