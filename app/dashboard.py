@@ -4,17 +4,18 @@ import streamlit as st
 import matplotlib.pyplot as plt 
 
 #Setar tamanho da tabela a ser apresentada
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide",
+                   page_title="Propagação da Covid 19")
 
-#Ler arquivo .csv
+# Ler Fonte de Dados
 df = pd.read_csv("https://raw.githubusercontent.com/datasets/covid-19/master/data/countries-aggregated.csv", decimal=",")
 
 #Tratar coluna Data para usar nos filtros dos gráficos
-#df["Date"] = pd.to_datetime(df["Date"])
-#df = df.sort_values("Date")
-#df["Month"] = df["Date"].apply(lambda x: str(x.year) + "-" + str(x.month))
-#month = st.sidebar.selectbox("Mês", df["Month"].unique())
-#df_filtered = df[df["Month"] == month]
+df["Date"] = pd.to_datetime(df["Date"])
+df = df.sort_values("Date")
+df["Month"] = df["Date"].apply(lambda x: f'{x.year}-{x.month}')
+month = st.sidebar.selectbox("Mês", df["Month"].unique())
+df_filtered = df[df["Month"] == month]
 
 #Seta as posições das colunas
 col1, col2 = st.columns(2)
@@ -29,6 +30,7 @@ fig = px.choropleth(
     color='Confirmed',
     animation_frame = 'Date',
     title='Dispersão do vírus da COVID-19',
+    template = 'seaborn',
     labels={
         "Date":"Data",
         "Confirmed":"Número de Casos"
@@ -44,6 +46,7 @@ fig = px.choropleth(
     color='Deaths',
     animation_frame = 'Date',
     title='Dispersão das mortes da COVID-19',
+    template = 'seaborn',
     labels={
         "Date":"Data",
         "Deaths":"Número de Mortes"
@@ -62,6 +65,7 @@ fig = px.line(
     x= 'Date',
     y = ['Casos Confirmados','Taxa de Infecção'],
     title='Coeficiente de Infecção e Número de Casos no Brasil (Normalizado)',
+    template = 'seaborn',
     labels={'Confirmed Cases Normalized':'Casos Confirmados',
             'Infection Rate Normalized':'Taxa de Infecção',
             'Date':'Data',
@@ -87,6 +91,7 @@ fig = px.bar(
     y='MIR',
 #    log_y=True,
     title = '10 Maiores taxas de Infecção Global (Máxima de casos notificados em um dia)',
+    template = 'seaborn',
     labels={
         'Country':'País',
         'MIR':'Maior Taxa de Infecção'
