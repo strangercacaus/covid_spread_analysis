@@ -10,6 +10,9 @@ st.set_page_config(layout="wide",
 # Ler Fonte de Dados
 df = pd.read_csv("https://raw.githubusercontent.com/datasets/covid-19/master/data/countries-aggregated.csv", decimal=",")
 
+# Definir tema do painel:
+theme = 'plotly_dark'
+
 #Tratar coluna Data para usar nos filtros dos gráficos
 df["Date"] = pd.to_datetime(df["Date"])
 df = df.sort_values("Date")
@@ -30,7 +33,7 @@ fig = px.choropleth(
     color='Confirmed',
     animation_frame = 'Date',
     title='Dispersão do vírus da COVID-19',
-    template = 'seaborn',
+    template = theme,
     labels={
         "Date":"Data",
         "Confirmed":"Número de Casos"
@@ -46,7 +49,7 @@ fig = px.choropleth(
     color='Deaths',
     animation_frame = 'Date',
     title='Dispersão das mortes da COVID-19',
-    template = 'seaborn',
+    template = theme,
     labels={
         "Date":"Data",
         "Deaths":"Número de Mortes"
@@ -65,7 +68,7 @@ fig = px.line(
     x= 'Date',
     y = ['Casos Confirmados','Taxa de Infecção'],
     title='Coeficiente de Infecção e Número de Casos no Brasil (Normalizado)',
-    template = 'seaborn',
+    template = theme,
     labels={'Confirmed Cases Normalized':'Casos Confirmados',
             'Infection Rate Normalized':'Taxa de Infecção',
             'Date':'Data',
@@ -91,7 +94,7 @@ fig = px.bar(
     y='MIR',
 #    log_y=True,
     title = '10 Maiores taxas de Infecção Global (Máxima de casos notificados em um dia)',
-    template = 'seaborn',
+    template = theme,
     labels={
         'Country':'País',
         'MIR':'Maior Taxa de Infecção'
