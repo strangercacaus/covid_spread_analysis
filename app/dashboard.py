@@ -13,11 +13,6 @@ st.set_page_config(layout="wide", page_title="Propagação da Covid 19")
 ssl._create_default_https_context = ssl._create_unverified_context
 dataset_url = "https://raw.githubusercontent.com/datasets/covid-19/master/data/countries-aggregated.csv"
 df = pd.read_csv(dataset_url)
-df.to_csv("../data/covid_dataset.csv")
-
-# Ler fonte de dados atualizada
-
-df = pd.read_csv("../data/covid_dataset.csv", decimal=",")
 df = df[df.Confirmed > 0]
 
 # Definir tema do painel:
